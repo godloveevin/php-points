@@ -15,3 +15,7 @@ git常用基本命令总结：
 5：添加文件	   git add 文件名
 6：提交		   git commit -m "提交注释"
 7：提交到远程	   git push -u origin master  账号/密码
+
+
+解决向github提交代码不用总是输入账号密码
+1：
