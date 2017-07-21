@@ -1,0 +1,17 @@
+git常用基本命令总结：
+1：ssh的配置
+// ssh-keygen -t rsa -C "your https://github.com's emial"
+公钥文件默认保存的路径：c:\User\Administrator\.ssh，打开id_rsa.pub文件，拷贝到github的ssh配置中，github上title任意取值，比如，wenhuayi；
+2：配置提交者的账号和名称
+打开本机git客户端
+// git config --global user.email "github的邮箱"
+// git config --global user.name "github的名字"
+3：建立工作目录
+// mkdir ~dev; 
+// cd dev; 
+// git clone 你自己的github项目git地址；
+// git clone https://github.com/godloveevin/php-points.git（克隆）
+4：连接远程git地址 git remote add origin https://github.com/godloveevin/php-points.git
+5：添加文件	   git add 文件名
+6：提交		   git commit -m "提交注释"
+7：提交到远程	   git push -u origin master  账号/密码
