@@ -18,4 +18,9 @@ git常用基本命令总结：
 
 
 解决向github提交代码不用总是输入账号密码
-1：
+1:修改git配置
+// git config --global credential.helper store
+这一步，会在用户目录下的.gitconfig文件最后加上
+[credential]
+	helper = store
+当配好之后的首次push代码时，需要输入账号密码，之后push就不用输入账号密码了
