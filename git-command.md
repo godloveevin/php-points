@@ -24,3 +24,9 @@ git常用基本命令总结：
 [credential]
 	helper = store
 当配好之后的首次push代码时，需要输入账号密码，之后push就不用输入账号密码了
+
+解决提交文件夹以及子文件夹
+// git add *
+// git commit -m "提交文件夹"
+// git push origin master
+
