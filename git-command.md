@@ -30,3 +30,17 @@ git常用基本命令总结：
 // git commit -m "提交文件夹"
 // git push origin master
 
+
+分支相关命令
+分支创建 // git checkout -b branch_name eg:git checkout -b branch001
+删除分支 //git branch -d branch_name   eg:git branch -d branch001
+git branch                        /*查看本地分支*/
+git checkout -b daily/1.0.0   /*签出新分支*/
+git checkout daily/1.0.1      /*切换到其他分支*/
+git push origin daily/1.0.0   /*push到远程分支*/
+git branch -d daily/1.0.0   /*删除本地分支*/
+git push origin --delete daily/1.0.0 /*删除远程分支*/
+
+查看历史提交记录 // git log --graph
+查看分支的commit记录//git show-branch
+
