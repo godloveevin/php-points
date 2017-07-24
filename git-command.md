@@ -43,6 +43,7 @@
 	git push origin daily/1.0.0   /*push到远程分支*/
 	git branch -d daily/1.0.0   /*删除本地分支*/
 	git push origin --delete daily/1.0.0 /*删除远程分支*/
+	git push origin local_branch:remote_branch/*提交本机分支到远程分支，注：local_branch必须存在*/
 
 ## 查看历史提交记录
 	git log --graph
