@@ -7,3 +7,5 @@
  */
  echo "Hello,string in PHP5&PHP7!";
  echo "I love PHP more than my girl!";
+
+ 
