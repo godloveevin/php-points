@@ -5,4 +5,5 @@
  * @email  godloveevin@yeah.net
  * @date   2018-11-09
  */
- echo "Hello,string in PHP5&PHP7";
+ echo "Hello,string in PHP5&PHP7!";
+ echo "I love PHP more than my girl!";
