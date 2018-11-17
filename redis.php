@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2018/11/17
- * Time: 16:49
- */
-
 $redis = new Redis();
 $redis->connect('127.0.0.1',6379);
 $redis->set('mykey1','hello');
