@@ -1,12 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: godloveevin
- * Date: 2018/11/17
- * Time: 17:50
- */
-
-
 class sessionManager
 {
     private $redis;
