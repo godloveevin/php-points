@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title></title>
+    <style>
+        #content{width: 400px;height: 400px;;position: relative;overflow: hidden;border: 1px solid gray}
+        #main{position: relative;top: -100px;}
+        .row {width: 400px;height:100px;}
+        .row div{width: 98px;height: 98px;position: relative;border: 1px solid gray;float: left;}
+        .black {background: black;}
+    </style>
+</head>
+<body>
+score：<span id="score">0</span>
+<div id="content">
+    <div id="main"></div>
+</div>
+<a  onclick="location.reload();">again</a>
+
+<script>
+    /**
+     * 别踩白块设计思路
+     * 1：初始化游戏界面
+     * 2：捕获点击事件
+     * 3：处理点击事件
+     * 4：返回游戏结果
+     */
+
+    /**
+     *  全局变量
+     */
+    var step = 2; // 步长值
+    var level = 5;// 速度控制等级
+    var main = document.getElementById('main');
+    var score = document.getElementById('score');
+
+
+    /**
+     * 游戏运行的入口
+     */
+    function run(){
+        init();
+        begin();
+    }
+
+    /**
+     * 定义初始化方法，完成界面的初始化
+     * 1：创建四行单元格，并随机给每行的某个单元格设置成黑色
+     * 2：设置定时器，滚动行级单元格
+     */
+    function init(){
+        // 1：创建四行单元格，并随机给每行的某个单元格设置成黑色
+        for(var i=0;i<4;i++) {
+            main.appendChild(createRowDiv());
+        }
+
+        // 2：设置定时器，滚动行级单元格
+        clock = setInterval('move()',50);
+    }
+
+    /**
+     * 定义捕获点击事件，并处理点击事件的函数
+     */
+    function begin(){
+        main.addEventListener('click',doClick);
+    }
+
+    /**
+     * 定义处理监听事件的函数
+     */
+    function doClick(e){
+        var item = e.target;
+
+        // 特殊情况，处理第一行的情况，当没有点击或者点击空白块都gameover
+        item.parentNode.is_clicked = true;
+
+        // 正常点击
+        if(item.className == ''){
+            //点击白色块，gameover
+            gameover();
+        }else{
+            // 否则，黑块变成白块，计分并提升方块滚动速度
+            item.className =  '';
+            var count = parseInt(score.innerHTML);
+            score.innerHTML = count+1;
+            if(count%level == 0){
+                step += 2;
+            }
+        }
+    }
+
+    /**
+     * 定义游戏结束函数
+     */
+    function gameover(){
+        alert('gameover');
+        clearInterval(clock);
+        // 删除监听main事件
+        main.removeEventListener('click',doClick);
+    }
+
+    /**
+     * 定义根据className创建单个div节点的函数
+     */
+    function createDivByClassName(className=''){
+        var div = document.createElement('div');
+        if(className){
+            div.setAttribute('class',className);
+        }
+        return div;
+    }
+
+    /**
+     * 定义创建一行单元格的函数
+     */
+    function createRowDiv(){
+        var rowDiv = createDivByClassName('row');
+
+        // 设置随机的黑色块单元格
+        var blackFlag = Math.floor((Math.random())*4);
+
+        // 创建单行单元格
+        for(var i=0;i<4;i++){
+            if(i == blackFlag){
+                rowDiv.appendChild(createDivByClassName('black'));
+            }else{
+                rowDiv.appendChild(createDivByClassName());
+            }
+        }
+        return rowDiv;
+    }
+
+    /**
+     * 定义滚动行单元格的函数
+     */
+    function move(){
+        // 获取由css设置的main.top属性值
+        var rowTop = parseInt(getComputedStyle(main).top);
+        rowTop += step; //console.log(rowTop);
+        main.style.top = rowTop + 'px';
+
+        // 创建新的行单元格并添加到main的第一个child处
+        if(rowTop >= 0){
+            main.style.top = -100 +'px';
+
+            // 创建新的行并添加到main的第一个child之前
+            if(main.firstChild){
+                main.insertBefore(createRowDiv(),main.firstChild);
+            }
+
+            // 删除main最后一个rowDiv节点
+            if(main.children.length > 5){
+                main.removeChild(main.lastChild);
+            }
+
+            // 处理没点击的情况
+            console.log(main.lastChild.is_clicked);
+            console.log(main.children);
+            if(main.lastChild.is_clicked == undefined){
+                gameover();
+            }
+        }
+    }
+
+    run();
+
+</script>
+
+</body>
+</html>
